@@ -17,10 +17,10 @@ A fully agentic media operation and recursive self improvement loop against plat
 ### Mac Studio Prepared *(coming soon)*
 A simulated, recursive hedge fund of 120+ AI agents: analysts, 53 desks from macro to credit, risk, compliance, legal, and audit, all grading their own calls weekly.
 
-### Portfolio Optimizer *(coming soon)*
+### [Portfolio Optimizer](https://github.com/andrewjamesjohnson/finance-models)
 Constrained Markowitz portfolios: tangency, minimum variance, the frontier, long only and pinned name versions.
 
-### Bonds, Factors and Pro Forma *(coming soon)*
+### [Bonds, Factors and Pro Forma](https://github.com/andrewjamesjohnson/finance-models)
 Bond pricing, factor models and pro forma statements, built as tools.
 
 ## Tools
