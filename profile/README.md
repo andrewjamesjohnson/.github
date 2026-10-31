@@ -11,14 +11,17 @@ Everything is a system. Things usually break where two parts meet, even when eac
 ### [Congress Stock Scorecard](https://github.com/andrewjamesjohnson/congress-stock-scorecard)
 Every morning the market is open: how members of Congress did with their stocks the day before, and which of their companies report earnings before the bell. Built from public filings. Nothing posts until I approve it on my phone.
 
-### The Clip Factory *(coming soon)*
+### [The Clip Factory](https://github.com/andrewjamesjohnson/clip-factory)
 A fully agentic media operation and recursive self improvement loop against platform algorithms: four accounts post via their own developer apps, an evaluator agent reads the results, and the next clips adapt. I am the only human in the loop.
 
 ### Mac Studio Prepared *(coming soon)*
 A simulated, recursive hedge fund of 120+ AI agents: analysts, 53 desks from macro to credit, risk, compliance, legal, and audit, all grading their own calls weekly.
 
 ### Portfolio Optimizer *(coming soon)*
-Constrained Markowitz portfolios, in Excel.
+Constrained Markowitz portfolios: tangency, minimum variance, the frontier, long only and pinned name versions.
+
+### Bonds, Factors and Pro Forma *(coming soon)*
+Bond pricing, factor models and pro forma statements, built as tools.
 
 ## Tools
 
