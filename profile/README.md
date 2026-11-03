@@ -6,6 +6,12 @@ I want to work at the frontier. I grew up around finance, and I do my best work 
 
 Everything is a system. Things usually break where two parts meet, even when each part was built right.
 
+## How I build
+
+[![Same model. Better system.](https://raw.githubusercontent.com/andrewjamesjohnson/loop-engineering/main/loop-engineering-wide.png)](https://github.com/andrewjamesjohnson/loop-engineering)
+
+**[Loop Engineering](https://github.com/andrewjamesjohnson/loop-engineering):** the harness, the graph and the loops behind my work, and why the same loop fits any system.
+
 ## Projects
 
 ### [Congress Stock Scorecard](https://github.com/andrewjamesjohnson/congress-stock-scorecard)
