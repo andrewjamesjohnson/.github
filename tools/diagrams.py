@@ -82,7 +82,89 @@ def how_i_build():
     x6 = 40 + 2 * (bw + gx) + bw / 2
     s.path_arrow(f"M{x6},{140+2*bh+gy+2} L{x6},{yb} L{20},{yb} L{20},{140+bh/2} L{38},{140+bh/2}", BLUE, 1.6)
     s.text(W / 2, yb + 22, "Results go into the next round of changes.", 13.5, 600, BLUE, anchor="middle")
-    return s.save(out(".github", "how-i-build.svg"))
+    return s.save(out("loop-engineering", "method.svg"))
+
+
+# ---------------------------------------------------------------------------
+# Loop Engineering: the overview at the top of the front page
+# ---------------------------------------------------------------------------
+def le_loops():
+    H = 624
+    s = SVG(W, H, "Loop Engineering: how my systems run",
+            "Sources, agents, checks, a person's sign off, output and results, with a fix loop, a day loop and a "
+            "week loop sending results back, and the five parts that keep every step on track.")
+    s.card()
+    header(s, "Loop Engineering", "How my systems run",
+           "The loop under The Clip Factory and Mac Studio Prepared, from the first source to the measured result.")
+    steps = [
+        ("Sources", "code", ["Filings, prices,", "news, streams", "and hearings."]),
+        ("Agents", "AI agents", ["Each role", "follows its own", "written workflow."]),
+        ("Checks", "code", ["Every rule is", "a test in code,", "pass or fail."]),
+        ("Approval", "a person", ["Signs off on", "anything that", "matters."]),
+        ("Output", "code", ["Clips, research", "notes and", "trade plans."]),
+        ("Results", "code", ["Real outcomes:", "views, returns,", "time saved."]),
+    ]
+    n, gx = len(steps), 16
+    bw = (W - 80 - gx * (n - 1)) / n
+    top, bh = 176, 118
+    xs = [40 + i * (bw + gx) for i in range(n)]
+
+    def cx(i, f=0.5):
+        return round(xs[i] + bw * f, 1)
+
+    for i, (head, who, rows) in enumerate(steps):
+        x, human = xs[i], head == "Approval"
+        s.rect(x, top, bw, bh, HUMAN if human else FILL, HUMAN if human else LINE)
+        s.text(x + 14, top + 26, str(i + 1), 12, 700, "#9FB0C4" if human else FAINT)
+        s.text(x + 30, top + 26, head, 14.5, 700, "#FFFFFF" if human else INK)
+        s.text(x + 14, top + 45, who, 12, 400, "#9FB0C4" if human else FAINT)
+        s.lines(x + 14, top + 70, rows, 12.5, gap=17, color="#C9D3E0" if human else MUTED)
+        if i < n - 1:
+            s.arrow(x + bw + 1, top + bh / 2, x + bw + gx - 1, top + bh / 2, INK, 1.3)
+    bot = top + bh
+    # week loop: results go back over the top to the checks, where the rules live
+    yw = top - 26
+    s.path_arrow(f"M{cx(5)},{top-2} L{cx(5)},{yw} L{cx(2)},{yw} L{cx(2)},{top-3}", BLUE, 1.6)
+    s.text((cx(2) + cx(5)) / 2, yw - 9, "Week loop", 12.5, 700, BLUE, anchor="middle")
+    # fix loop: a failed check goes back to the agents
+    yf = bot + 24
+    s.path_arrow(f"M{cx(2,0.35)},{bot+2} L{cx(2,0.35)},{yf} L{cx(1,0.65)},{yf} L{cx(1,0.65)},{bot+3}", BLUE, 1.6)
+    s.text((cx(2, 0.35) + cx(1, 0.65)) / 2, yf + 18, "Fix loop", 12.5, 700, BLUE, anchor="middle")
+    # day loop: results become the lessons the next run starts from
+    yd = bot + 54
+    s.path_arrow(f"M{cx(5)},{bot+2} L{cx(5)},{yd} L{cx(1,0.3)},{yd} L{cx(1,0.3)},{bot+3}", BLUE, 1.6)
+    s.text((cx(3) + cx(5)) / 2, yd - 9, "Day loop", 12.5, 700, BLUE, anchor="middle")
+    # what each loop does
+    legend = [
+        ("Fix loop", "minutes", ["A failed check goes back to be", "fixed, with the reason it failed."]),
+        ("Day loop", "daily", ["Results become the lessons the", "next run reads first."]),
+        ("Week loop", "weekly", ["Rule changes are replayed on past", "runs, then KEEP, NO EFFECT or ROLL BACK."]),
+    ]
+    cw = (W - 80) / 3
+    ly = 394
+    for i, (name, when, rows) in enumerate(legend):
+        x = 40 + i * cw
+        s.add(f'<text x="{x}" y="{ly}" font-size="13" font-weight="700" fill="{BLUE}">{name}'
+              f'<tspan font-weight="400" fill="{FAINT}">  ·  {when}</tspan></text>')
+        s.lines(x, ly + 21, rows, 12.2, gap=17, color=MUTED)
+    # the parts that keep every step on track
+    s.line(40, 462, W - 40, 462, LINE, 1)
+    s.kicker(40, 488, "What keeps every step on track")
+    parts = [
+        ("Memory", ["One shared board every", "step reads first and", "writes last."]),
+        ("Gates", ["Code checks each rule", "and answers in fixed", "words."]),
+        ("Journal", ["Every run leaves a line,", "so a crash picks up", "where it fell."]),
+        ("Replay", ["Real past jobs rerun", "before any engine", "change ships."]),
+        ("Undo", ["Every live change", "ships with a way back."]),
+    ]
+    pw = (W - 80) / len(parts)
+    for i, (name, rows) in enumerate(parts):
+        x = 40 + i * pw
+        s.text(x, 514, name, 13.5, 700)
+        s.lines(x, 535, rows, 12.2, gap=17, color=MUTED)
+    s.source("Source: The Clip Factory and Mac Studio Prepared, November 2026. Blue: results going back in. "
+             "Dark: a person.")
+    return s.save(out("loop-engineering", "loops.svg"))
 
 
 # ---------------------------------------------------------------------------
@@ -712,6 +794,6 @@ def echo_flow():
 
 
 if __name__ == "__main__":
-    for f in (how_i_build, cf_loop, cf_day, jb_funnel, jb_form, cs_morning,
+    for f in (le_loops, how_i_build, cf_loop, cf_day, jb_funnel, jb_form, cs_morning,
               msp_company, msp_morning, msp_event, msp_strategy, msp_wall, msp_learning, msp_seat, lib_flow, echo_flow):
         print(f())
