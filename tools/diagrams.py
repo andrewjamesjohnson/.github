@@ -679,7 +679,39 @@ def lib_flow():
     return s.save(out("library-agent", "flow.svg"))
 
 
+def echo_flow():
+    top, rh = 150, 50
+    steps = [
+        ("Sources", "you", "YouTube, podcasts, live TV, PDFs, articles and earnings calls."),
+        ("Pull", "code", "Downloads the media or the text. Articles are stripped to readable text."),
+        ("Transcribe", "local model", "whisper.cpp on this Mac. No per hour cost and nothing uploaded."),
+        ("Speaker turns", "local model", "A second pass marks where the speaker changes."),
+        ("Store", "code", "SQLite with full text search. The database never leaves the machine."),
+        ("Search and read", "you", "Search everything at once, or open a transcript that jumps to the moment."),
+    ]
+    H = top + len(steps) * rh + 104
+    s = SVG(W, H, "How Project Echo works",
+            "From sources to a searchable, speaker-labelled library of transcripts on your own machine, with briefs as the next phase.")
+    s.card()
+    header(s, "Project Echo", "From a podcast or an earnings call to searchable text",
+           "A local research tool for investors. Code is shared; your data and keys stay on your machine.")
+    for i, (name, who_, note) in enumerate(steps):
+        y = top + i * rh
+        human = who_ == "you"
+        s.rect(40, y + 4, W - 80, rh - 8, HUMAN if human else FILL, HUMAN if human else LINE)
+        s.text(56, y + 30, str(i + 1), 12, 700, "#9FB0C4" if human else FAINT)
+        s.text(78, y + 30, name, 14, 700, "#FFFFFF" if human else INK)
+        s.text(250, y + 30, who_, 12.5, 400, "#C9D3E0" if human else MUTED)
+        s.text(370, y + 30, note, 12.2, 400, "#FFFFFF" if human else INK)
+    y = top + len(steps) * rh + 10
+    s.rect(40, y, W - 80, 48, SHADE, "#D5DBE3")
+    s.text(56, y + 20, "Next phase", 13.5, 700)
+    s.text(56, y + 38, "Briefs and unanswered questions from each call, written by a local model from the transcript. Not built yet.", 12.2, 400, MUTED)
+    s.source("Built for my brother. Speed: an 80 minute podcast transcribes in about six minutes on an M2 Max.")
+    return s.save(out("project-echo", "flow.svg"))
+
+
 if __name__ == "__main__":
     for f in (how_i_build, cf_loop, cf_day, jb_funnel, jb_form, cs_morning,
-              msp_company, msp_morning, msp_event, msp_strategy, msp_wall, msp_learning, msp_seat, lib_flow):
+              msp_company, msp_morning, msp_event, msp_strategy, msp_wall, msp_learning, msp_seat, lib_flow, echo_flow):
         print(f())
