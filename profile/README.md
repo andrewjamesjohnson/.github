@@ -2,7 +2,7 @@
 
 # Andrew James Johnson
 
-**B.S. Finance, University of Utah, May 2027 · Salt Lake City and Chanhassen, MN**
+**B.S. Finance, University of Utah, May 2027 · Salt Lake City, UT and Chanhassen, MN**
 
 I grew up around finance and I work as an analyst first: financial modeling, valuation and markets. I use AI to get more of that work done, and I build it the way a firm runs. Every role gets its own written workflow, every rule becomes a check in code, and a person signs off on anything that matters. The biggest project runs a full fund research desk privately, on hardware the fund owns.
 
