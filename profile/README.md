@@ -1,3 +1,5 @@
+<img src="https://raw.githubusercontent.com/andrewjamesjohnson/.github/main/profile/banner.jpg" alt="The Salt Lake Valley from the foothills" width="880">
+
 # Andrew James Johnson
 
 **B.S. Finance, University of Utah, May 2027 · Salt Lake City and Chanhassen, MN**
