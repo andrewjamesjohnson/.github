@@ -49,7 +49,7 @@ Every project starts the way a finance process does: what comes in, what gets de
 
 **Finance:** financial modeling · valuation · pro forma statements · portfolio construction (Markowitz, factor models) · fixed income (duration, immunization) · risk (VaR, stress tests) · fund operations · Advanced Excel
 
-**Technology:** Python · SQL · Git · agent design and orchestration · human in the loop workflows · evaluation and guardrails · Anthropic Claude · local open weight models
+**Technology:** Python · SQL · Git · agent design and orchestration · human in the loop workflows · evaluation and guardrails · frontier and local open weight models
 
 ## About
 

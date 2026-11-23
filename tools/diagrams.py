@@ -93,7 +93,7 @@ CF_STEPS = [
                             "desk checks the news every 15 minutes. A hunt digs up past hearings."]),
     ("Pick", "15:00 board", ["A daily board ranks every moment by who is in it, the video, the moment",
                                "and how fresh it is. The best clips go first. Formats are picked after."]),
-    ("Make", "21:00 night shift", ["Claude agents cut the night's clips: the hook, the cut points, captions,",
+    ("Make", "21:00 night shift", ["AI agents cut the night's clips: the hook, the cut points, captions,",
                                    "framing, title and cover. A render engine draws every frame."]),
     ("Check", "every clip", ["Code gates read each clip. Every caption word is really said, the face",
                              "matches the name, no dead air, no loading screens, swears muted."]),
@@ -201,7 +201,7 @@ def cf_day():
     bar(0, 24, y, "Stats read every 30 minutes, every platform", "loop")
     mark(5 + 20 / 60, y, "05:20 coach", "loop")
     mark(12 + 20 / 60, y, "12:20 coach", "loop")
-    s.text(40, 478, "34 launchd timers and 17 scheduled Claude jobs run this day, every day.", 13, 400, MUTED)
+    s.text(40, 478, "34 launchd timers and 17 scheduled AI jobs run this day, every day.", 13, 400, MUTED)
     return s.save(out("clip-factory", "day.svg"))
 
 
