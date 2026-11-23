@@ -13,7 +13,7 @@ I grew up around finance and I work as an analyst first: financial modeling, val
 | Project | What it is | Proof |
 |---|---|---|
 | **[Mac Studio Prepared](https://github.com/andrewjamesjohnson/mac-studio-prepared)** | A hedge fund research desk with 120 seats on four Mac Studios. Every seat has a written workflow, and private data never leaves the building. | 94 reports, 113 scheduled jobs, 29 formulas, 7,107 tests |
-| **[Finance Models](https://github.com/andrewjamesjohnson/finance-models)** | Portfolio optimizer, bonds, factor models and pro formas in Python. | Matches Excel's PRICE, YIELD and DURATION |
+| **[Finance Models](https://github.com/andrewjamesjohnson/finance-models)** | Portfolio optimizer, bonds, factor models, pro formas, and an options pricer (Black-Scholes, implied volatility, American trees) in Python and Excel. | Option prices match Hull's published answers; Excel and Python agree to the last decimal |
 | **[Congress Stock Scorecard](https://github.com/andrewjamesjohnson/congress-stock-scorecard)** | How members of Congress did with their stocks, every market morning, from public filings. | Streams a 15 GB market file through a small C reader each morning |
 | **[The Clip Factory](https://github.com/andrewjamesjohnson/clip-factory)** | A media operation that finds, cuts and posts video on YouTube, Facebook, Instagram and TikTok, with my approval on every clip. | 1,435 commits in 5 weeks, 6,222 tests, 51 scheduled jobs |
 | **[The Library Agent](https://github.com/andrewjamesjohnson/library-agent)** | Finds public domain books on Project Gutenberg and the Internet Archive, reads them, and answers with the chapter and paragraph behind every sentence. | Every citation checked in code before an answer prints |
