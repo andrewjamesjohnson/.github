@@ -16,6 +16,7 @@ I grew up around finance and I work as an analyst first: financial modeling, val
 | **[Finance Models](https://github.com/andrewjamesjohnson/finance-models)** | Portfolio optimizer, bonds, factor models and pro formas in Python. | Matches Excel's PRICE, YIELD and DURATION |
 | **[Congress Stock Scorecard](https://github.com/andrewjamesjohnson/congress-stock-scorecard)** | How members of Congress did with their stocks, every market morning, from public filings. | Streams a 15 GB market file through a small C reader each morning |
 | **[The Clip Factory](https://github.com/andrewjamesjohnson/clip-factory)** | A media operation that finds, cuts and posts video on YouTube, Facebook, Instagram and TikTok, with my approval on every clip. | 1,435 commits in 5 weeks, 6,222 tests, 51 scheduled jobs |
+| **[The Library Agent](https://github.com/andrewjamesjohnson/library-agent)** | Finds public domain books on Project Gutenberg and the Internet Archive, reads them, and answers with the chapter and paragraph behind every sentence. | Every citation checked in code before an answer prints |
 | **[The Job Bot](https://github.com/andrewjamesjohnson/job-bot)** | Finds entry level roles on 1,801 company boards, picks the right resume and fills the form. I press Submit. | 570 roles lined up in its first 3 days |
 | **[Loop Engineering](https://github.com/andrewjamesjohnson/loop-engineering)** | How I build these systems, on one page. | 402 gate refusals in a week, counted by rule |
 
@@ -26,6 +27,17 @@ Most AI work today runs through someone else's servers, one chat at a time. This
 <a href="https://github.com/andrewjamesjohnson/mac-studio-prepared"><img src="https://raw.githubusercontent.com/andrewjamesjohnson/mac-studio-prepared/main/docs/company.svg" alt="How work moves through the desk: 120 seats in the groups the desk's app uses" width="880"></a>
 
 <a href="https://github.com/andrewjamesjohnson/mac-studio-prepared"><img src="https://raw.githubusercontent.com/andrewjamesjohnson/mac-studio-prepared/main/docs/morning.svg" alt="The trading morning, New York time, with the 06:58 ready to open gate" width="880"></a>
+
+## At Quasar Markets
+
+I was Head of Data Intelligence, Media and Growth at Quasar Markets, a financial data and research platform, from August 2025 to November 2026. What I built there belongs to the company, so none of it is in these repos. In short:
+
+| Work | What it was |
+|---|---|
+| **World Data Intelligence** | 206 countries and territories and every US state, mapped by sector, so an agent knows where each of 220,000+ sources lives |
+| **300+ agents** | Agents that took over about half the company's work, from email and social to project delivery |
+| **70+ modules** | UI and UX for engineering to build, from Quasar Exchange, the client trading platform, to trackers for opening bells, earnings calls and chart patterns |
+| **Media and investor relations** | Booked the NYSE, Schwab Network, Yahoo Finance, X and Roku TV, with live streams that peaked at 102,000 viewers, and helped run two raises |
 
 ## How I build
 

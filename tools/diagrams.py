@@ -649,7 +649,37 @@ def msp_company():
     return s.save(out("mac-studio-prepared", "company.svg"))
 
 
+def lib_flow():
+    steps = [
+        ("Question", "you", "In plain words. Optional: a subject, like banking, or the books to use."),
+        ("Find the books", "code", "Subject search on Project Gutenberg. The Internet Archive as a backup."),
+        ("Public domain only", "code", "Gutenberg's own flag, or published in 1930 or earlier for the Archive."),
+        ("Pull them", "code", "One book at a time, two seconds apart, cached here, never redistributed."),
+        ("Read every paragraph", "code", "Header and licence removed. Each paragraph numbered, with its chapter."),
+        ("Rank", "code", "BM25 over every paragraph. The six that best answer the question."),
+        ("Answer", "local model", "From those six passages only, every sentence cited."),
+        ("Check the citations", "code", "A citation that does not exist, or a sentence without one, fails the answer."),
+    ]
+    top, rh = 150, 50
+    H = top + len(steps) * rh + 44
+    s = SVG(W, H, "How the Library Agent answers a question",
+            "Eight steps from a question to an answer with book, chapter and paragraph citations, checked in code.")
+    s.card()
+    header(s, "The Library Agent", "From a question to a cited answer",
+           "Public domain books only. Everything runs on this machine.")
+    for i, (name, who_, note) in enumerate(steps):
+        y = top + i * rh
+        last = i == len(steps) - 1
+        s.rect(40, y + 4, W - 80, rh - 8, FILL, BLUE if last else LINE, sw=1.5 if last else 1)
+        s.text(56, y + 30, str(i + 1), 12, 700, FAINT)
+        s.text(78, y + 30, name, 14, 700, BLUE if last else INK)
+        s.text(270, y + 30, who_, 12.5, 400, MUTED)
+        s.text(370, y + 30, note, 12.4, 400, INK)
+    s.source("Sources: Project Gutenberg through the Gutendex catalog, and the Internet Archive's advanced search.")
+    return s.save(out("library-agent", "flow.svg"))
+
+
 if __name__ == "__main__":
     for f in (how_i_build, cf_loop, cf_day, jb_funnel, jb_form, cs_morning,
-              msp_company, msp_morning, msp_event, msp_strategy, msp_wall, msp_learning, msp_seat):
+              msp_company, msp_morning, msp_event, msp_strategy, msp_wall, msp_learning, msp_seat, lib_flow):
         print(f())
