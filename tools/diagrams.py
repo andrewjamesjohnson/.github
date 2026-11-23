@@ -6,7 +6,7 @@ smallest text stays readable on a laptop.
 """
 import os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from svgkit import SVG, INK, MUTED, FAINT, LINE, BLUE, BLUE_FILL, FILL, PAPER, w
+from svgkit import SVG, INK, MUTED, FAINT, LINE, BLUE, BLUE_FILL, FILL, PAPER, SHADE, HUMAN, w
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 W = 880
@@ -18,11 +18,12 @@ def out(repo, name):
     return os.path.join(d, name)
 
 
-def header(s, kicker, title, sub=None, y=48):
-    s.kicker(40, y, kicker)
-    s.text(40, y + 38, title, 30, 700)
+def header(s, label, title, sub=None, y=40):
+    s.kicker(40, y, label)
+    s.text(40, y + 30, title, 21, 700)
     if sub:
-        s.text(40, y + 66, sub, 15, 400, MUTED)
+        s.text(40, y + 54, sub, 13.5, 400, MUTED)
+    s.line(40, y + 72, W - 40, y + 72, INK, 1)
 
 
 # ---------------------------------------------------------------------------
@@ -52,14 +53,14 @@ def how_i_build():
     s = SVG(W, 470, "How I build anything",
             "Six steps that repeat: map, build the smallest loop, gate it in code, run in shadow, measure, keep or roll back.")
     s.card()
-    header(s, "How I build", "The same six steps, every project",
-           "Built once, then improved every day by its own results.")
+    header(s, "Method", "How each system gets built",
+           "The same six steps on every project, repeated as results come in.")
     steps = [
-        ("Map it", ["Data in, a decision,", "data out, a check.", "Where do parts meet?"]),
-        ("Smallest loop", ["One path that runs end", "to end today, even", "if it is ugly."]),
-        ("Gate it in code", ["Every rule is a check", "that answers in fixed", "words. Never vibes."]),
-        ("Run in shadow", ["It decides, nothing", "ships. I compare its", "calls to mine."]),
-        ("Measure", ["Real results only.", "Views, fills, returns,", "errors caught."]),
+        ("Map the process", ["What comes in, what gets", "decided, what goes out", "and what checks it."]),
+        ("Build one path", ["One working path, end", "to end, before adding", "anything else."]),
+        ("Rules become checks", ["Each rule is a test in", "code with a fixed pass", "or fail answer."]),
+        ("Run in shadow", ["It makes the call,", "nothing ships, and I", "compare it with mine."]),
+        ("Measure", ["Real outcomes only:", "returns, views, errors", "caught, time saved."]),
         ("Keep or roll back", ["Every change ends", "KEEP, NO EFFECT", "or ROLL BACK."]),
     ]
     cols, gx, gy = 3, 20, 20
@@ -80,7 +81,7 @@ def how_i_build():
     yb = 140 + 2 * bh + gy + 22
     x6 = 40 + 2 * (bw + gx) + bw / 2
     s.path_arrow(f"M{x6},{140+2*bh+gy+2} L{x6},{yb} L{20},{yb} L{20},{140+bh/2} L{38},{140+bh/2}", BLUE, 1.6)
-    s.text(W / 2, yb + 22, "The loop runs again with what it learned.", 13.5, 600, BLUE, anchor="middle")
+    s.text(W / 2, yb + 22, "Results go into the next round of changes.", 13.5, 600, BLUE, anchor="middle")
     return s.save(out(".github", "how-i-build.svg"))
 
 
@@ -115,8 +116,8 @@ def cf_loop():
     s = SVG(W, H, "The Clip Factory loop",
             "Nine steps: find, pick, make, check, me, dress, post, measure, learn, and back to find.")
     s.card()
-    header(s, "The Clip Factory", "One loop, running 24/7",
-           "Nine steps. Code and agents do eight of them. I do one.")
+    header(s, "The Clip Factory", "From source video to posted clip",
+           "Nine stages. Eight run on their own. One is my approval.")
     x0, x1 = 40, W - 96
     for i, (name, when, rows) in enumerate(CF_STEPS):
         y = top + i * (bh + gap)
@@ -124,12 +125,12 @@ def cf_loop():
         fill = INK if human else (BLUE_FILL if loop else FILL)
         stroke = INK if human else (BLUE if loop else LINE)
         hc = "#FFFFFF" if human else (BLUE if loop else INK)
-        rc = "#D9D9D4" if human else ("#3D4F86" if loop else MUTED)
+        rc = "#C9D3E0" if human else (MUTED if loop else MUTED)
         s.rect(x0, y, x1 - x0, bh, fill, stroke)
-        s.text(x0 + 18, y + 31, f"{i+1:02d}", 12, 700, "#A9A9A4" if human else FAINT, spacing=1)
+        s.text(x0 + 18, y + 31, f"{i+1:02d}", 12, 700, "#9FB0C4" if human else FAINT, spacing=1)
         s.text(x0 + 46, y + 31, name, 17, 700, hc)
         s.text(x0 + 18, y + 53, when, 12.5, 400, rc)
-        s.lines(x0 + 170, y + 31, rows, 13.2, gap=19, color=hc if human else INK if not loop else "#22336B")
+        s.lines(x0 + 170, y + 31, rows, 13.2, gap=19, color=hc if human else INK if not loop else INK)
         if i < len(CF_STEPS) - 1:
             s.arrow(x0 + 60, y + bh + 1, x0 + 60, y + bh + gap - 1, INK, 1.3)
     # the loop: from Learn back up to Find
@@ -141,7 +142,7 @@ def cf_loop():
     s.path_arrow(f"M{xr},{ym} L{x1+3},{ym}", BLUE, 1.4)
     s.add(f'<text x="{xr+18}" y="{(yl+yf)/2}" font-size="12.5" font-weight="700" fill="{BLUE}" '
           f'text-anchor="middle" letter-spacing="1.4" transform="rotate(90 {xr+18} {(yl+yf)/2})">'
-          f'LESSONS FEED THE NEXT NIGHT</text>')
+          f'Lessons go to the next night</text>')
     return s.save(out("clip-factory", "loop.svg"))
 
 
@@ -150,21 +151,21 @@ def cf_day():
     s = SVG(W, H, "A day in the Clip Factory",
             "24 hours of timers: night shift, posting window, scouts, breaking desk, stats, coach and fixer.")
     s.card()
-    header(s, "A day in the factory", "Nobody presses start",
-           "Every job below runs on a timer. Times are Mountain.")
+    header(s, "The Clip Factory", "Daily schedule",
+           "Every job runs on a timer. Mountain time.")
     ax0, ax1 = 130, W - 40
     hx = lambda h: ax0 + (ax1 - ax0) * h / 24
     for h in range(0, 25, 3):
         x = hx(h)
         s.text(x, 142, f"{h:02d}:00", 11.5, 400, FAINT, anchor="middle")
-        s.line(x, 150, x, 440, "#ECECE8", 1)
+        s.line(x, 150, x, 440, "#EEF1F5", 1)
     rows = {"Find": 160, "Make": 218, "Check": 276, "Post": 334, "Learn": 392}
     for name, y in rows.items():
         s.text(40, y + 26, name, 15, 700)
 
     def bar(h0, h1, y, label="", kind="plain"):
         x0, x1 = hx(h0), hx(h1)
-        fill, stroke, col = {"plain": ("#E9E9E5", "#CFCFCB", INK), "solid": (INK, INK, "#FFFFFF"),
+        fill, stroke, col = {"plain": (SHADE, "#C3CAD4", INK), "solid": (INK, INK, "#FFFFFF"),
                              "loop": (BLUE_FILL, BLUE, BLUE)}[kind]
         s.rect(x0, y + 10, x1 - x0, 24, fill, stroke, rx=6)
         if label:
@@ -231,7 +232,7 @@ def jb_funnel():
         s.rect(bx, y + 8, max(14, bmax * frac), 14, INK if last else LINE, INK if last else LINE, rx=4)
         s.text(bx, y + 46, note, 13.2, 400, MUTED)
         if not last:
-            s.line(40, y + rh - 8, W - 40, y + rh - 8, "#E6E6E2", 1)
+            s.line(40, y + rh - 8, W - 40, y + rh - 8, "#E3E7ED", 1)
     return s.save(out("job-bot", "funnel.svg"))
 
 
@@ -255,7 +256,7 @@ def jb_form():
     for label, val, kind in fields:
         s.text(fx + 24, y + 14, label, 12, 600, MUTED)
         if kind == "ok":
-            s.rect(fx + 230, y, fw - 254, 24, "#FFFFFF", "#CFCFCB", rx=5)
+            s.rect(fx + 230, y, fw - 254, 24, "#FFFFFF", "#C3CAD4", rx=5)
             s.text(fx + 240, y + 17, val, 13, 400, INK)
         else:
             s.rect(fx + 230, y - 2, fw - 254, 28, "#FFF6CC", "#E8B600", rx=5, sw=2.2)
@@ -287,8 +288,8 @@ def cs_morning():
     s = SVG(W, H, "A Congress Scorecard morning",
             "02:30 prices, 06:00 estimates and slides, 06:05 my phone, 06:30 posted, 09:30 cut off.")
     s.card()
-    header(s, "Congress Stock Scorecard", "One market morning, by itself",
-           "Public filings in. Eight slides out. One tap from me in between.")
+    header(s, "Congress Stock Scorecard", "A market morning",
+           "Public filings in, eight slides out, and my approval in between.")
     steps = [
         ("02:30", "Prices", ["Streams IEX's daily", "file, 10 to 15 GB,", "keeps last trades."], False),
         ("06:00", "Estimates", ["Every member's gain,", "SEC earnings since", "the close, slides."], False),
@@ -355,14 +356,14 @@ def msp_firm():
 MSP_MORNING = [
     ("03:15", "Integrity check", "Verify the audit chain. Prove a fake private file cannot reach the cloud."),
     ("04:00", "Broker digest", "Sell side notes on our names, read and summarised. Licensed research stays inside."),
-    ("04:15", "Risk report", "VaR, stress tests, limits, exposures, liquidity. An optimizer proposal inside the same limits."),
+    ("04:15", "Risk report", "VaR, stress tests, limits and liquidity, with an optimizer proposal."),
     ("04:30", "Thesis monitor", "Every new filing and call checked against each thesis's own sell if rules."),
     ("05:00", "Morning brief", "Positions, watchlist, overnight news through the impact map. Checked, then filed."),
     ("06:22", "Morning call", "The early read, held until risk, the books, NAV and the P&L explanation are in."),
     ("06:30", "Middle office", "Corporate actions, three way reconciliation, cash ladder, P&L attribution, NAV check."),
     ("06:55", "Ops and compliance", "One page for the COO and CCO: breaks, payee changes, pre-clearance, MNPI flags."),
     ("06:58", "Ready to open?", "Eight checks in code. One answer: yes, or no with what is missing and who acts."),
-    ("07:30", "PM meeting", "The PM reads the late edition and decides. People trade. Agents never do."),
+    ("07:30", "PM meeting", "The PM reviews the late edition. Trades are placed by people only."),
 ]
 
 
@@ -372,8 +373,8 @@ def msp_morning():
     s = SVG(W, H, "The trading morning",
             "From the 03:15 integrity check to the 07:30 PM meeting, with the 06:58 ready to open gate.")
     s.card()
-    header(s, "The trading morning", "Ready to open by 06:58",
-           "Every weekday, New York time. Agents read and draft. Code checks. People decide.")
+    header(s, "Mac Studio Prepared", "The trading morning, New York time",
+           "Each step waits for the one before it. At 06:58 a gate decides whether the desk is ready.")
     for i, (t, name, note) in enumerate(MSP_MORNING):
         y = top + i * rh
         human = name == "PM meeting"
@@ -381,12 +382,12 @@ def msp_morning():
         if human or gate:
             s.rect(40, y + 2, W - 80, rh - 8, INK if human else BLUE_FILL, INK if human else BLUE, rx=8)
         c1 = "#FFFFFF" if human else (BLUE if gate else INK)
-        c2 = "#D9D9D4" if human else ("#22336B" if gate else MUTED)
-        s.text(58, y + 30, t, 14, 700, "#A9A9A4" if human else FAINT)
+        c2 = "#C9D3E0" if human else (INK if gate else MUTED)
+        s.text(58, y + 30, t, 14, 700, "#9FB0C4" if human else FAINT)
         s.text(130, y + 30, name, 15, 700, c1)
         s.text(310, y + 30, note, 12.8, 400, c2)
         if not (human or gate) and i < len(MSP_MORNING) - 1 and MSP_MORNING[i + 1][1] != "Ready to open?":
-            s.line(58, y + rh - 3, W - 58, y + rh - 3, "#E6E6E2", 1)
+            s.line(58, y + rh - 3, W - 58, y + rh - 3, "#E3E7ED", 1)
     return s.save(out("mac-studio-prepared", "morning.svg"))
 
 
@@ -406,8 +407,8 @@ def msp_event():
     s = SVG(W, H, "Headline to brief",
             "The event alert workflow: eight steps from a newswire headline to a checked brief in the inbox, with the data class rising as private data joins.")
     s.card()
-    header(s, "Workflow: event alert", "A headline to a checked brief in about 3 minutes",
-           "The newswire is read every 30 seconds. The data class only ever goes up.")
+    header(s, "Mac Studio Prepared", "Event alert: from headline to checked brief",
+           "The newswire is read every 30 seconds. About three minutes from headline to brief.")
     for x, h in ((58, "Step"), (230, "Who"), (360, "Data class"), (490, "What happens")):
         s.kicker(x, 160, h)
     for i, (name, who, cls, note) in enumerate(steps):
@@ -415,15 +416,15 @@ def msp_event():
         last = i == len(steps) - 1
         s.rect(40, y + 4, W - 80, rh - 8, INK if last else FILL, INK if last else LINE, rx=8)
         c1 = "#FFFFFF" if last else INK
-        c2 = "#D9D9D4" if last else MUTED
+        c2 = "#C9D3E0" if last else MUTED
         s.text(58, y + 30, f"{i+1}  {name}", 14, 700, c1)
         s.text(230, y + 30, who, 13, 400, c2)
-        shade = {"PUBLIC": "#FFFFFF", "INTERNAL": "#E9E9E5", "RESTRICTED": "#CFCFCB"}[cls]
+        shade = {"PUBLIC": "#FFFFFF", "INTERNAL": SHADE, "RESTRICTED": "#C3CAD4"}[cls]
         if not last:
-            s.rect(360, y + 15, 100, 22, shade, "#BDBDB8", rx=5)
+            s.rect(360, y + 15, 100, 22, shade, "#B8C0CC", rx=5)
             s.text(410, y + 30, cls, 10.5, 700, INK, anchor="middle", spacing=0.8)
         else:
-            s.text(360, y + 30, cls, 10.5, 700, "#D9D9D4", spacing=0.8)
+            s.text(360, y + 30, cls, 10.5, 700, "#C9D3E0", spacing=0.8)
         s.text(490, y + 30, note if len(note) < 58 else note[:57].rsplit(" ", 1)[0] + "...", 12.5, 400, c2)
     s.text(40, H - 18, "Anything built from private inputs is private. Unknown sources count as RESTRICTED.", 12.5, 400, MUTED)
     return s.save(out("mac-studio-prepared", "event.svg"))
@@ -442,8 +443,8 @@ def msp_strategy():
     s = SVG(W, H, "An idea's path to a paper book",
             "Idea, walk forward backtest, trial ledger with deflated Sharpe, holdout opened once, paper trading on new days, PM decides.")
     s.card()
-    header(s, "Workflow: strategy validation", "Is the Sharpe real?",
-           "An idea earns a paper book only after the tests that kill most ideas.")
+    header(s, "Mac Studio Prepared", "Strategy validation",
+           "A strategy reaches a paper portfolio only after every test below.")
     cols, gx, gy = 3, 20, 20
     bw = (W - 80 - gx * (cols - 1)) / cols
     bh = 92
@@ -463,8 +464,8 @@ def msp_strategy():
     s.text(40, y + 60, "Before", 13, 700, MUTED)
     s.text(140, y + 60, "Sharpe +1.62", 15, 700)
     s.text(40, y + 90, "Now", 13, 700, INK)
-    s.text(140, y + 90, "Sharpe +1.62, standard error 0.81, 391 sessions, 6 trials, deflated Sharpe 0.52 against a", 13, 400)
-    s.text(140, y + 110, "line of 0.95. Same number, honest context: not good enough yet.", 13, 400)
+    s.text(140, y + 90, "Sharpe +1.62, standard error 0.81, 391 sessions, 6 trials.", 13, 400)
+    s.text(140, y + 110, "Deflated Sharpe 0.52 against a 0.95 line: not significant yet.", 13, 400)
     return s.save(out("mac-studio-prepared", "strategy.svg"))
 
 
@@ -473,8 +474,8 @@ def msp_wall():
     s = SVG(W, H, "The privacy wall",
             "Private zone on four Mac Studios with local open weight models; one public route out to cloud models for public data only, enforced three times.")
     s.card()
-    header(s, "Guardrails", "Private data never leaves the building",
-           "The same rule is enforced three times, and tested every night.")
+    header(s, "Mac Studio Prepared", "Where the data is allowed to go",
+           "Private data stays on the four Studios. The rule is enforced three times and tested every night.")
     # private zone
     s.rect(40, 140, 560, 330, "#FFFFFF", INK, rx=12, sw=1.4)
     s.kicker(60, 168, "Private zone: four Mac Studios")
@@ -483,16 +484,16 @@ def msp_wall():
     for i, (a, b, c) in enumerate(macs):
         x = 60 + (i % 2) * 265
         y = 186 + (i // 2) * 84
-        s.rect(x, y, 250, 70, "#F7F7F4", LINE, rx=8)
+        s.rect(x, y, 250, 70, SHADE, LINE, rx=8)
         s.text(x + 14, y + 26, a, 12, 700, FAINT, spacing=1)
         s.text(x + 14, y + 47, b, 14, 700)
         s.text(x + 14, y + 63, c, 12, 400, MUTED)
     s.text(60, 386, "Positions, theses, client data, expert calls, broker research.", 12.5, 400, MUTED)
-    s.text(60, 406, "Open weight models only. No meter, no outside copy.", 12.5, 400, MUTED)
+    s.text(60, 406, "Open weight models only, on hardware the fund owns.", 12.5, 400, MUTED)
     s.rect(60, 422, 520, 32, INK, INK, rx=7)
     s.text(320, 443, "Everything lands in one inbox. A person approves.", 13, 700, "#FFFFFF", anchor="middle")
     # cloud
-    s.rect(660, 200, 180, 120, "#F7F7F4", LINE, rx=12)
+    s.rect(660, 200, 180, 120, SHADE, LINE, rx=12)
     s.kicker(678, 228, "Cloud")
     s.text(678, 254, "Frontier models", 14, 700)
     s.lines(678, 276, ["public data only:", "filings, news, transcripts"], 12, color=MUTED)
@@ -509,8 +510,8 @@ def msp_learning():
     s = SVG(W, H, "The learning loop",
             "Code measures every call, the coach proposes at most three fixes a week, a person applies them in a reviewed commit.")
     s.card()
-    header(s, "The learning loop", "The agent proposes. Code measures. A person changes it.",
-           "That is the only safe shape for a system that improves itself.")
+    header(s, "Mac Studio Prepared", "Weekly review",
+           "Code measures every call, the coach proposes, and a person approves any change.")
     nodes = [
         (40, "Code measures", ["Latency on every call,", "fallback ladder, the", "bake off, calibration."], False, False),
         (325, "Coach proposes", ["Fridays 17:30. At most", "three fixes, every", "number checked by code."], False, True),
@@ -532,8 +533,8 @@ def msp_seat():
     s = SVG(W, H, "How one seat files a report",
             "Code computes every number, a local model writes a few sentences, code checks each number, an unsupported one bounces once, then the inbox and a person.")
     s.card()
-    header(s, "How a seat works", "Code does the math. The model writes. Code checks.",
-           "The same five steps for every one of the 94 reports, from the rates note to the risk report.")
+    header(s, "Mac Studio Prepared", "How a seat files a report",
+           "The same five steps for all 94 reports, from the rates note to the risk report.")
     steps = [
         ("Pull", "code", ["Only the data the seat is cleared", "for: PUBLIC, INTERNAL or RESTRICTED."], False, False),
         ("Compute", "code", ["Every figure: curve, spreads, VaR, P&L,", "estimates. Units and windows stated."], False, False),
@@ -547,12 +548,12 @@ def msp_seat():
         fill = INK if human else (BLUE_FILL if loop else FILL)
         stroke = INK if human else (BLUE if loop else LINE)
         hc = "#FFFFFF" if human else (BLUE if loop else INK)
-        rc = "#D9D9D4" if human else ("#22336B" if loop else MUTED)
+        rc = "#C9D3E0" if human else (INK if loop else MUTED)
         s.rect(40, y, 720, bh, fill, stroke)
-        s.text(58, y + 28, f"{i+1:02d}", 12, 700, "#A9A9A4" if human else FAINT, spacing=1)
+        s.text(58, y + 28, f"{i+1:02d}", 12, 700, "#9FB0C4" if human else FAINT, spacing=1)
         s.text(86, y + 28, h, 16, 700, hc)
         s.text(58, y + 48, who_, 12.5, 400, rc)
-        s.lines(230, y + 27, rows, 13, gap=19, color="#FFFFFF" if human else ("#22336B" if loop else INK))
+        s.lines(230, y + 27, rows, 13, gap=19, color="#FFFFFF" if human else (INK if loop else INK))
         if i < len(steps) - 1:
             s.arrow(100, y + bh + 1, 100, y + bh + gap - 1, INK, 1.3)
     y3 = top + 3 * (bh + gap) + bh / 2
@@ -563,7 +564,92 @@ def msp_seat():
     return s.save(out("mac-studio-prepared", "seat.svg"))
 
 
+def msp_company():
+    H = 752
+    s = SVG(W, H, "How work moves through the desk",
+            "The desk's 120 seats in the groups its own app draws: command, intake, data, the research floor, risk and quant, compliance, reports and clients, the investment team, operations, and the seats alongside.")
+    s.card()
+    header(s, "Mac Studio Prepared", "How work moves through the desk",
+           "120 seats, grouped the way the desk's own app draws them. Numbers are seats.")
+    def box(x, y, wd, ht, num, head, count, rows, human=False):
+        s.rect(x, y, wd, ht, HUMAN if human else FILL, HUMAN if human else LINE)
+        hc = "#FFFFFF" if human else INK
+        rc = "#C9D3E0" if human else MUTED
+        s.text(x + 12, y + 24, str(num), 12, 700, "#9FB0C4" if human else FAINT)
+        s.text(x + 28, y + 24, head, 14, 700, hc)
+        if count:
+            s.text(x + wd - 12, y + 24, str(count), 14, 700, "#9FB0C4" if human else FAINT, anchor="end")
+        s.lines(x + 12, y + 46, rows, 12.2, gap=17, color=rc)
+    # 1 command across the top
+    s.rect(40, 126, 800, 52, FILL, INK, sw=1.2)
+    s.text(52, 150, "1", 12, 700, FAINT)
+    s.text(68, 150, "Command", 14, 700)
+    s.text(828, 150, "5", 14, 700, FAINT, anchor="end")
+    s.text(68, 168, "The head of the floor routes every task to the seat that owns it. Staff: chief of staff, devil's advocate, scorekeeper, costs.", 12.2, 400, MUTED)
+    A, B, C, D = (40, 180), (234, 226), (474, 196), (684, 156)
+    top = 222
+    # distribution line from command to the columns
+    s.line(440, 178, 440, 196, INK, 1.2)
+    s.line(A[0] + A[1] / 2, 196, C[0] + C[1] / 2, 196, INK, 1.2)
+    for x0, wd in (A, B, C):
+        s.arrow(x0 + wd / 2, 196, x0 + wd / 2, top - 2, INK)
+    s.arrow(D[0] + D[1] / 2, 178, D[0] + D[1] / 2, top - 2, INK)
+    s.text(D[0] + D[1] / 2 + 6, 205, "reports", 11, 400, FAINT)
+    # column A: what comes in
+    box(A[0], top, A[1], 172, 2, "Intake and watch", 8, ["News, filings, mail", "and calls, screened", "as they arrive.", "Sanctions and the", "security watch."])
+    box(A[0], top + 200, A[1], 172, 3, "Data team", 4, ["Whole public files,", "checked and dated.", "Licences, quality", "and the model", "scout."])
+    # column B: the research floor
+    bx, bw = B
+    s.rect(bx, top, bw, 372, FILL, INK, sw=1.2)
+    s.text(bx + 12, top + 24, "4", 12, 700, FAINT)
+    s.text(bx + 28, top + 24, "Research floor", 14, 700)
+    s.text(bx + bw - 12, top + 24, "61", 14, 700, FAINT, anchor="end")
+    s.lines(bx + 12, top + 46, ["The analyst leads. Each", "note is checked before", "it leaves the floor."], 12.2, gap=17, color=MUTED)
+    pits = [("Markets pit", 17, "macro, rates, FX, energy"), ("Companies pit", 18, "banks, tech, biotech, legal"),
+            ("Third pit", 18, "M&A, credit, Asia, Europe"), ("On the glass", 8, "checker, grid, shipping")]
+    for i, (name, n, desc) in enumerate(pits):
+        y = top + 104 + i * 66
+        s.rect(bx + 12, y, bw - 24, 54, SHADE, "#D5DBE3")
+        s.text(bx + 24, y + 22, name, 13, 700)
+        s.text(bx + bw - 24, y + 22, str(n), 13, 700, FAINT, anchor="end")
+        s.text(bx + 24, y + 41, desc, 11.8, 400, MUTED)
+    # arrows A -> B
+    for y in (top + 86, top + 286):
+        s.arrow(A[0] + A[1] + 1, y, bx - 2, y, INK)
+    # column C: checked notes go three ways
+    cx, cw = C
+    cy = [top, top + 132, top + 264]
+    box(cx, cy[0], cw, 108, 5, "Risk and quant", 7, ["Estimates, backtests,", "risk and the paper book."])
+    box(cx, cy[1], cw, 108, 6, "Compliance", 9, ["Filings, controls and", "the restricted list."])
+    box(cx, cy[2], cw, 108, 7, "Reports, clients", 9, ["Reports, client replies", "and investor letters."])
+    s.line(bx + bw + 1, top + 186, bx + bw + 9, top + 186, INK, 1.2)
+    s.line(bx + bw + 9, cy[0] + 54, bx + bw + 9, cy[2] + 54, INK, 1.2)
+    for y in cy:
+        s.arrow(bx + bw + 9, y + 54, cx - 2, y + 54, INK)
+    # column D: people, then operations
+    dx, dw = D
+    box(dx, top, dw, 160, 8, "Investment team", "", ["PM, CIO, risk and", "compliance approve,", "send and trade.", "Nobody else can."], human=True)
+    box(dx, top + 212, dw, 160, 9, "Operations", 7, ["After the trade:", "reconciled,", "explained, cash", "and tax."])
+    s.line(cx + cw + 1, cy[0] + 54, cx + cw + 9, cy[0] + 54, INK, 1.2)
+    s.line(cx + cw + 1, cy[1] + 54, cx + cw + 9, cy[1] + 54, INK, 1.2)
+    s.line(cx + cw + 1, cy[2] + 54, cx + cw + 9, cy[2] + 54, INK, 1.2)
+    s.line(cx + cw + 9, cy[0] + 54, cx + cw + 9, cy[2] + 54, INK, 1.2)
+    s.arrow(cx + cw + 9, top + 80, dx - 2, top + 80, INK)
+    s.arrow(dx + dw / 2, top + 162, dx + dw / 2, top + 210, INK)
+    s.text(dx + dw / 2 + 6, top + 190, "trades", 11, 400, FAINT)
+    s.path_arrow(f"M{dx+dw},{top+292} L{dx+dw+14},{top+292} L{dx+dw+14},{top+120} L{dx+dw+3},{top+120}", BLUE, 1.5)
+    # 10: alongside
+    yb = top + 400
+    s.rect(40, yb, 800, 72, FILL, LINE)
+    s.text(52, yb + 24, "10", 12, 700, FAINT)
+    s.text(74, yb + 24, "Alongside", 14, 700)
+    s.text(74, yb + 44, "Lab and coach (3) test models and propose fixes. Public windows (2) are the only route to the cloud,", 12.2, 400, MUTED)
+    s.text(74, yb + 62, "for public data only. The studio (5) drafts public media. Everything here is a draft or a proposal.", 12.2, 400, MUTED)
+    s.source("Source: Mac Studio Prepared floor plan, November 2026. 109 agents and 11 always on engines. Blue: work that needs a person goes back.")
+    return s.save(out("mac-studio-prepared", "company.svg"))
+
+
 if __name__ == "__main__":
-    for f in (hero, how_i_build, cf_loop, cf_day, jb_funnel, jb_form, cs_morning,
-              msp_firm, msp_morning, msp_event, msp_strategy, msp_wall, msp_learning, msp_seat):
+    for f in (how_i_build, cf_loop, cf_day, jb_funnel, jb_form, cs_morning,
+              msp_company, msp_morning, msp_event, msp_strategy, msp_wall, msp_learning, msp_seat):
         print(f())

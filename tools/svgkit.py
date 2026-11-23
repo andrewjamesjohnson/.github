@@ -1,27 +1,29 @@
-"""Tiny SVG kit for the portfolio diagrams.
+"""Tiny SVG kit for the portfolio exhibits.
 
-One look everywhere: light paper card, black ink, grey notes, and ONE blue
-that is only ever used for loops (things that feed back). No gradients, no
-glows, no dots on nodes, no dotted paths. Text uses the reader's system font,
-because GitHub shows an SVG as an image and cannot load web fonts.
+The look is a research report exhibit: white page, a thin rule under the title, dark navy ink, grey notes,
+square corners, and one blue used only for things that feed back. No gradients, no glows, no pastel fills,
+no dotted paths. Text uses the reader's system font, because GitHub shows an SVG as an image and cannot load
+web fonts.
 """
 from xml.sax.saxutils import escape
 
-FONT = "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
-PAPER = "#F7F7F4"
-EDGE = "#DDDDDA"
-INK = "#111111"
-MUTED = "#5E5E5E"
-FAINT = "#8C8C87"
-LINE = "#BDBDB8"
+FONT = "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif"
+PAPER = "#FFFFFF"
+EDGE = "#D0D7DE"
+INK = "#0B1F33"
+MUTED = "#4A5565"
+FAINT = "#7A8594"
+LINE = "#B8C0CC"
 FILL = "#FFFFFF"
-BLUE = "#1F45B8"
-BLUE_FILL = "#EEF1FA"
+SHADE = "#F3F5F8"
+BLUE = "#1A4E9A"
+BLUE_FILL = "#FFFFFF"
+HUMAN = "#0B2545"
 
 
 def w(text, size, weight=400):
     """Rough text width in px for the system sans at this size."""
-    k = 0.56 if weight < 600 else 0.6
+    k = 0.55 if weight < 600 else 0.59
     return len(text) * size * k
 
 
@@ -38,7 +40,7 @@ class SVG:
     # ---- primitives -------------------------------------------------------
     def card(self, pad=0):
         self.add(f'<rect x="{pad+0.5}" y="{pad+0.5}" width="{self.W-2*pad-1}" height="{self.H-2*pad-1}" '
-                 f'rx="16" fill="{PAPER}" stroke="{EDGE}"/>')
+                 f'rx="6" fill="{PAPER}" stroke="{EDGE}"/>')
 
     def text(self, x, y, s, size=14, weight=400, color=INK, anchor="start", spacing=0, italic=False):
         ls = f' letter-spacing="{spacing}"' if spacing else ""
@@ -51,52 +53,54 @@ class SVG:
         for i, r in enumerate(rows):
             self.text(x, y + i * gap, r, size, weight, color, anchor)
 
-    def kicker(self, x, y, s, color=MUTED):
-        self.text(x, y, s.upper(), 11.5, 700, color, spacing=1.6)
+    def kicker(self, x, y, s, color=FAINT):
+        self.text(x, y, s, 12.5, 600, color)
 
-    def rect(self, x, y, wd, ht, fill=FILL, stroke=LINE, rx=10, sw=1):
-        self.add(f'<rect x="{x}" y="{y}" width="{wd}" height="{ht}" rx="{rx}" fill="{fill}" '
+    def rect(self, x, y, wd, ht, fill=FILL, stroke=LINE, rx=3, sw=1):
+        self.add(f'<rect x="{x}" y="{y}" width="{wd}" height="{ht}" rx="{min(rx, 3)}" fill="{fill}" '
                  f'stroke="{stroke}" stroke-width="{sw}"/>')
 
     def line(self, x1, y1, x2, y2, color=LINE, sw=1.2):
         self.add(f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="{color}" stroke-width="{sw}"/>')
+
+    def source(self, s):
+        self.text(40, self.H - 18, s, 11.5, 400, FAINT)
 
     def _marker(self, color):
         mid = "m" + color.strip("#")
         if mid not in self.marker_ids:
             self.marker_ids.add(mid)
             self.parts.insert(0, f'<defs><marker id="{mid}" viewBox="0 0 10 10" refX="9" refY="5" '
-                                 f'markerWidth="7" markerHeight="7" orient="auto-start-reverse">'
+                                 f'markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">'
                                  f'<path d="M0,0 L10,5 L0,10 z" fill="{color}"/></marker></defs>')
         return mid
 
-    def arrow(self, x1, y1, x2, y2, color=INK, sw=1.4):
+    def arrow(self, x1, y1, x2, y2, color=INK, sw=1.3):
         m = self._marker(color)
         self.add(f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="{color}" stroke-width="{sw}" '
                  f'marker-end="url(#{m})"/>')
 
-    def path_arrow(self, d, color=BLUE, sw=1.6):
+    def path_arrow(self, d, color=BLUE, sw=1.5):
         m = self._marker(color)
         self.add(f'<path d="{d}" fill="none" stroke="{color}" stroke-width="{sw}" '
-                 f'stroke-linejoin="round" marker-end="url(#{m})"/>')
+                 f'stroke-linejoin="miter" marker-end="url(#{m})"/>')
 
     # ---- composites -------------------------------------------------------
-    def node(self, x, y, wd, ht, head, rows=(), human=False, loop=False, num=None, head_size=15):
-        fill, stroke, hc, rc = FILL, LINE, INK, MUTED
+    def node(self, x, y, wd, ht, head, rows=(), human=False, loop=False, num=None, head_size=14.5):
+        fill, stroke, hc, rc, sw = FILL, LINE, INK, MUTED, 1
         if human:
-            fill, stroke, hc, rc = INK, INK, "#FFFFFF", "#D9D9D4"
+            fill, stroke, hc, rc = HUMAN, HUMAN, "#FFFFFF", "#C9D3E0"
         elif loop:
-            fill, stroke, hc, rc = BLUE_FILL, BLUE, BLUE, "#3D4F86"
-        self.rect(x, y, wd, ht, fill, stroke)
-        tx = x + 16
-        ty = y + 28
+            stroke, hc, sw = BLUE, BLUE, 1.5
+        self.rect(x, y, wd, ht, fill, stroke, sw=sw)
+        tx, ty = x + 14, y + 26
         if num is not None:
-            self.text(tx, ty, f"{num:02d}", 11.5, 700, FAINT if not human else "#A9A9A4", spacing=1)
-            tx2 = tx + 26
+            self.text(tx, ty, f"{num}", 12, 700, "#9FB0C4" if human else FAINT)
+            tx2 = tx + 18
         else:
             tx2 = tx
         self.text(tx2, ty, head, head_size, 700, hc)
-        self.lines(tx, ty + 22, rows, 12.5, color=rc)
+        self.lines(tx, ty + 21, rows, 12.5, color=rc)
 
     def render(self):
         head = (f'<svg xmlns="http://www.w3.org/2000/svg" width="{self.W}" height="{self.H}" '
