@@ -15,6 +15,7 @@ I grew up around finance and I work as an analyst first: financial modeling, val
 | **[Mac Studio Prepared](https://github.com/andrewjamesjohnson/mac-studio-prepared)** | A hedge fund research desk with 120 seats on four Mac Studios. Every seat has a written workflow, and private data never leaves the building. | 94 reports, 113 scheduled jobs, 29 formulas, 7,107 tests |
 | **[Project Echo](https://github.com/andrewjamesjohnson/project-echo)** | A local research tool for investors, built for my brother: transcribes earnings calls, podcasts and live TV on your own machine, marks who is speaking, and makes it all searchable. | 185 tests; an 80 minute podcast transcribes in about six minutes on a laptop |
 | **[Finance Models](https://github.com/andrewjamesjohnson/finance-models)** | Portfolio optimizer, bonds, factor models, pro formas, and an options pricer (Black-Scholes, implied volatility, American trees) in Python and Excel. | Option prices match Hull's published answers; Excel and Python agree to the last decimal. [Try the Excel model](https://github.com/andrewjamesjohnson/finance-models/raw/main/options/options_pricer.xlsx) |
+| **[World Data Sources](https://github.com/andrewjamesjohnson/world-data-sources)** | Where the official data lives for 205 countries and territories and every US state, in 50 sectors. One file per place, so an AI agent goes straight to the publisher instead of searching the web. | 237,399 source listings and 24,096 cited figures; a command line tool and an MCP server |
 | **[Congress Stock Scorecard](https://github.com/andrewjamesjohnson/congress-stock-scorecard)** | How members of Congress did with their stocks, every market morning, from public filings. | Streams a 15 GB market file through a small C reader each morning |
 | **[The Clip Factory](https://github.com/andrewjamesjohnson/clip-factory)** | A media operation that finds, cuts and posts video on YouTube, Facebook, Instagram and TikTok, with my approval on every clip. | 1,435 commits in 5 weeks, 6,222 tests, 51 scheduled jobs |
 | **[The Library Agent](https://github.com/andrewjamesjohnson/library-agent)** | Finds public domain books on Project Gutenberg and the Internet Archive, reads them, and answers with the chapter and paragraph behind every sentence. | Every citation checked in code before an answer prints |
@@ -31,11 +32,11 @@ Most AI work today runs through someone else's servers, one chat at a time. This
 
 ## At Quasar Markets
 
-I was Head of Data Intelligence, Media and Growth at Quasar Markets, a financial data and research platform, from August 2025 to November 2026. What I built there belongs to the company, so none of it is in these repos. In short:
+I was Head of Data Intelligence, Media and Growth at Quasar Markets, a financial data and research platform, from August 2025 to November 2026. Most of what I built there belongs to the company and is not in these repos. In short:
 
 | Work | What it was |
 |---|---|
-| **World Data Intelligence** | 206 countries and territories and every US state, mapped by sector, so an agent knows where each of 220,000+ sources lives |
+| **World Data Intelligence** | 206 countries and territories and every US state, mapped by sector, so an agent knows where each of 220,000+ sources lives. A fresh public version is [World Data Sources](https://github.com/andrewjamesjohnson/world-data-sources). |
 | **300+ agents** | Agents that took over about half the company's work, from email and social to project delivery |
 | **70+ modules** | UI and UX for engineering to build, from Quasar Exchange, the client trading platform, to trackers for opening bells, earnings calls and chart patterns |
 | **Media and investor relations** | Booked the NYSE, Schwab Network, Yahoo Finance, X and Roku TV, with live streams that peaked at 102,000 viewers, and helped run two raises |
