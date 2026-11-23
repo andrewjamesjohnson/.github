@@ -32,7 +32,7 @@ Most AI work today runs through someone else's servers, one chat at a time. This
 
 ## At Quasar Markets
 
-I was Head of Data Intelligence, Media and Growth at Quasar Markets, a financial data and research platform, from August 2025 to November 2026. Most of what I built there belongs to the company and is not in these repos. In short:
+I was at Quasar Markets, a financial data and research platform, from August 2025 to November 2026: Director of Integrated Data first, then Head of Data Intelligence, Media and Growth from February 2026. Most of what I built there belongs to the company and is not in these repos. In short:
 
 | Work | What it was |
 |---|---|
