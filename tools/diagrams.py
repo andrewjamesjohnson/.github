@@ -332,7 +332,7 @@ def msp_firm():
     ]
     depts2 = [
         ("Compliance", 10, ["Legal, restricted list,", "pre-clearance, trade", "surveillance, sanctions,", "MNPI wall, filings clock"]),
-        ("Data", 7, ["Licences, data quality,", "alt data, power grid,", "shipping, weather,", "public record"]),
+        ("Data", 8, ["Licences, data quality,", "alt data, power grid,", "shipping, weather,", "public record, social"]),
         ("Clients and IR", 3, ["Client book, DDQs and", "the letter, allocator", "flows"]),
         ("Discipline", 4, ["Devil's advocate,", "scorekeeper, costs,", "retro coach", ""]),
     ]
@@ -346,7 +346,7 @@ def msp_firm():
             s.text(x + 16, y + 30, name, 15, 700)
             s.text(x + bw - 16, y + 30, str(n), 15, 700, FAINT, anchor="end")
             s.lines(x + 16, y + 56, [r for r in rows if r], 12.5, color=MUTED)
-    s.text(40, 690, "Plus 5 platform seats (model lab, model scout, coder, frontier desk, postmaster), a 7 seat public", 13, 400, MUTED)
+    s.text(40, 690, "Plus 5 platform seats (model lab, model scout, coder, frontier desk, postmaster), a 6 seat public", 13, 400, MUTED)
     s.text(40, 710, "media studio, and a chief of staff. Each seat has a written role, a data clearance and an owner.", 13, 400, MUTED)
     s.text(40, 740, "Counts are seats per group. Built and tested on a fictional market ahead of the hardware.", 12, 400, FAINT)
     return s.save(out("mac-studio-prepared", "firm.svg"))
@@ -527,7 +527,43 @@ def msp_learning():
     return s.save(out("mac-studio-prepared", "learning.svg"))
 
 
+def msp_seat():
+    H = 560
+    s = SVG(W, H, "How one seat files a report",
+            "Code computes every number, a local model writes a few sentences, code checks each number, an unsupported one bounces once, then the inbox and a person.")
+    s.card()
+    header(s, "How a seat works", "Code does the math. The model writes. Code checks.",
+           "The same five steps for every one of the 94 reports, from the rates note to the risk report.")
+    steps = [
+        ("Pull", "code", ["Only the data the seat is cleared", "for: PUBLIC, INTERNAL or RESTRICTED."], False, False),
+        ("Compute", "code", ["Every figure: curve, spreads, VaR, P&L,", "estimates. Units and windows stated."], False, False),
+        ("Write", "local model", ["A few sentences on top of the numbers.", "No arithmetic. No advice language."], False, False),
+        ("Check", "code", ["Every number traced to the item. One that", "is not there sends the draft back once."], False, True),
+        ("Inbox", "a person", ["Read, approve, edit or reject. The verdict", "feeds the credibility scoreboard."], True, False),
+    ]
+    top, bh, gap = 150, 64, 12
+    for i, (h, who_, rows, human, loop) in enumerate(steps):
+        y = top + i * (bh + gap)
+        fill = INK if human else (BLUE_FILL if loop else FILL)
+        stroke = INK if human else (BLUE if loop else LINE)
+        hc = "#FFFFFF" if human else (BLUE if loop else INK)
+        rc = "#D9D9D4" if human else ("#22336B" if loop else MUTED)
+        s.rect(40, y, 720, bh, fill, stroke)
+        s.text(58, y + 28, f"{i+1:02d}", 12, 700, "#A9A9A4" if human else FAINT, spacing=1)
+        s.text(86, y + 28, h, 16, 700, hc)
+        s.text(58, y + 48, who_, 12.5, 400, rc)
+        s.lines(230, y + 27, rows, 13, gap=19, color="#FFFFFF" if human else ("#22336B" if loop else INK))
+        if i < len(steps) - 1:
+            s.arrow(100, y + bh + 1, 100, y + bh + gap - 1, INK, 1.3)
+    y3 = top + 3 * (bh + gap) + bh / 2
+    y2 = top + 2 * (bh + gap) + bh / 2
+    s.path_arrow(f"M760,{y3} L800,{y3} L800,{y2} L763,{y2}", BLUE, 1.6)
+    s.text(812, (y2 + y3) / 2 + 4, "once", 12, 700, BLUE)
+    s.text(40, H - 22, "A second unsupported number goes to a person, flagged. A model never grades its own draft.", 12.5, 400, MUTED)
+    return s.save(out("mac-studio-prepared", "seat.svg"))
+
+
 if __name__ == "__main__":
     for f in (hero, how_i_build, cf_loop, cf_day, jb_funnel, jb_form, cs_morning,
-              msp_firm, msp_morning, msp_event, msp_strategy, msp_wall, msp_learning):
+              msp_firm, msp_morning, msp_event, msp_strategy, msp_wall, msp_learning, msp_seat):
         print(f())

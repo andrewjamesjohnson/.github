@@ -10,7 +10,7 @@ I grew up around markets, and finance is the work I do: financial modeling, valu
 
 | Project | What it does | The workflow | Proof |
 |---|---|---|---|
-| **[Mac Studio Prepared](https://github.com/andrewjamesjohnson/mac-studio-prepared)** | A hedge fund research desk of 109 AI agents, built to run on four Mac Studios | Research, 48 coverage desks, risk, middle office, compliance, a 06:58 ready to open gate, **the PM decides** | 23 workflows, 124 scheduled jobs, 7,107 tests, private data never leaves the building |
+| **[Mac Studio Prepared](https://github.com/andrewjamesjohnson/mac-studio-prepared)** | A hedge fund research desk of 109 AI agents, built to run on four Mac Studios | Research, 48 coverage desks, risk, middle office, compliance, a 06:58 ready to open gate, **the PM decides** | 94 agent written reports, 23 workflows, 29 pinned formulas, 7,107 tests, private data never leaves the building |
 | **[Finance Models](https://github.com/andrewjamesjohnson/finance-models)** | Portfolio optimizer, bonds, factors and pro formas in plain Python | Inputs, closed form, a numeric check that must agree | Matches Excel's PRICE, YIELD and DURATION |
 | **[Congress Stock Scorecard](https://github.com/andrewjamesjohnson/congress-stock-scorecard)** | How members of Congress did with their stocks, every market morning | Public filings, prices, estimates, slides, **my approval**, posted | Streams a 15 GB market file through a small C reader each morning |
 | **[The Clip Factory](https://github.com/andrewjamesjohnson/clip-factory)** | A media operation that runs itself across YouTube, Facebook, Instagram and TikTok | Find, pick, make, check, **my approval**, post, measure, learn | 1,435 commits in 5 weeks, 6,222 tests, 51 scheduled jobs |
@@ -19,7 +19,11 @@ I grew up around markets, and finance is the work I do: financial modeling, valu
 
 ### Mac Studio Prepared
 
+Fully agentic research and reporting for a fund, on hardware the fund owns: private, and with no bill per report. [Every seat](https://github.com/andrewjamesjohnson/mac-studio-prepared/blob/main/docs/AGENTS.md) · [every report](https://github.com/andrewjamesjohnson/mac-studio-prepared/blob/main/docs/REPORTS.md) · [the formulas](https://github.com/andrewjamesjohnson/mac-studio-prepared/blob/main/docs/FORMULAS.md)
+
 <a href="https://github.com/andrewjamesjohnson/mac-studio-prepared"><img src="https://raw.githubusercontent.com/andrewjamesjohnson/mac-studio-prepared/main/docs/firm.svg" alt="A fund desk of 109 agents, organised the way a real fund runs" width="880"></a>
+
+<a href="https://github.com/andrewjamesjohnson/mac-studio-prepared"><img src="https://raw.githubusercontent.com/andrewjamesjohnson/mac-studio-prepared/main/docs/seat.svg" alt="How a seat works: code does the math, the model writes, code checks" width="880"></a>
 
 <a href="https://github.com/andrewjamesjohnson/mac-studio-prepared"><img src="https://raw.githubusercontent.com/andrewjamesjohnson/mac-studio-prepared/main/docs/morning.svg" alt="The trading morning: ready to open by 06:58" width="880"></a>
 
