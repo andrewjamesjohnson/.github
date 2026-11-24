@@ -33,7 +33,7 @@ Every project starts the way a finance process does: what comes in, what gets de
 
 Most AI work today runs through someone else's servers, one chat at a time. On this desk, each of the 120 seats has a charter that says what it owns, what done looks like and where it has to stop, so any task goes to the seat built for it. Everything is built to run on open weight models on four Studios the fund owns, and as those models get better, the same machines do more. [Every seat](https://github.com/andrewjamesjohnson/mac-studio-prepared/blob/main/docs/AGENTS.md) · [every report](https://github.com/andrewjamesjohnson/mac-studio-prepared/blob/main/docs/REPORTS.md) · [the formulas](https://github.com/andrewjamesjohnson/mac-studio-prepared/blob/main/docs/FORMULAS.md)
 
-<a href="https://github.com/andrewjamesjohnson/mac-studio-prepared"><img src="https://raw.githubusercontent.com/andrewjamesjohnson/mac-studio-prepared/main/docs/company.svg" alt="How work moves through the desk: 120 seats in the groups the desk's app uses" width="880"></a>
+<a href="https://github.com/andrewjamesjohnson/mac-studio-prepared"><img src="https://raw.githubusercontent.com/andrewjamesjohnson/mac-studio-prepared/main/docs/desk.svg" alt="How the desk works together: every seat's face in its group, from command and intake through the research floor and the checks to the investment team and operations" width="880"></a>
 
 <a href="https://github.com/andrewjamesjohnson/mac-studio-prepared#inside-the-app"><img src="https://raw.githubusercontent.com/andrewjamesjohnson/mac-studio-prepared/main/docs/app/bridge.jpg" alt="Inside the desk's app: every figure is a seat at its console, each with its own harness, sandbox and written workflow" width="880"></a>
 

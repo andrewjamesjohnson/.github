@@ -795,5 +795,5 @@ def echo_flow():
 
 if __name__ == "__main__":
     for f in (le_loops, how_i_build, cf_loop, cf_day, jb_funnel, jb_form, cs_morning,
-              msp_company, msp_morning, msp_event, msp_strategy, msp_wall, msp_learning, msp_seat, lib_flow, echo_flow):
+              msp_morning, msp_event, msp_strategy, msp_wall, msp_learning, msp_seat, lib_flow, echo_flow):
         print(f())
