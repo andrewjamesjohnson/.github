@@ -4,7 +4,7 @@
 
 **B.S. Finance, University of Utah, May 2027 · Salt Lake City, UT and Chanhassen, MN**
 
-I grew up around finance and I work as an analyst first: financial modeling, valuation and markets. I use AI to get more of that work done, and I build it the way a firm runs. Every role gets its own written workflow, every rule becomes a check in code, and a person signs off on anything that matters. The biggest project runs a full fund research desk privately, on hardware the fund owns.
+I grew up around finance and I work as an analyst first: financial modeling, valuation and markets. I use AI to get more of that work done, and I build it the way a firm runs. Every role gets its own written workflow, every rule becomes a check in code, and a person signs off on anything that matters. My biggest project, Mac Studio Prepared, is a full fund research desk built to run privately, on hardware the fund owns.
 
 **Open to:** 2027 analyst internships and full time roles in finance, defense, government and AI.
 
@@ -12,7 +12,7 @@ I grew up around finance and I work as an analyst first: financial modeling, val
 
 <a href="https://github.com/andrewjamesjohnson/loop-engineering"><img src="https://raw.githubusercontent.com/andrewjamesjohnson/loop-engineering/main/docs/loops.svg" alt="Loop Engineering: sources, agents, checks, a person signing off, output and results, with a fix loop, a day loop and a week loop sending results back" width="880"></a>
 
-Every project starts the way a finance process does: what comes in, what gets decided, what goes out and what checks it. Things usually break where two parts meet, even when each part was built right, so every hand off gets its own check. [Loop Engineering](https://github.com/andrewjamesjohnson/loop-engineering) has the method on one page.
+Every project starts the way a finance process does: what comes in, what gets decided, what goes out and what checks it. Things usually break where two parts meet, even when each part was built right, so every hand off gets its own check. [Loop Engineering](https://github.com/andrewjamesjohnson/loop-engineering) has the full method.
 
 ## Projects
 
@@ -20,7 +20,7 @@ Every project starts the way a finance process does: what comes in, what gets de
 |---|---|---|
 | **[Mac Studio Prepared](https://github.com/andrewjamesjohnson/mac-studio-prepared)** | A hedge fund research desk with 120 seats on four Mac Studios. Every seat has a written workflow, and private data never leaves the building. | 94 reports, 113 scheduled jobs, 29 formulas, 7,107 tests (I charge to set this up for a fund; [walkthrough on request](https://www.linkedin.com/in/andrewj3)) |
 | **[The Clip Factory](https://github.com/andrewjamesjohnson/clip-factory)** | A media operation that finds, cuts and posts video on YouTube, Facebook, Instagram and TikTok, with my approval on every clip. | 1,435 commits in 5 weeks, 6,222 tests, 51 scheduled jobs (I charge to set this up for a client) |
-| **[Loop Engineering](https://github.com/andrewjamesjohnson/loop-engineering)** | How I build these systems, on one page. | 402 gate refusals in a week, counted by rule |
+| **[Loop Engineering](https://github.com/andrewjamesjohnson/loop-engineering)** | The workflow, the checks and the feedback loops behind these projects. | 402 gate refusals in a week, counted by rule |
 | **[Agent Prompt Library](https://github.com/andrewjamesjohnson/agent-prompt-library)** | 463 research prompts for an investment firm, sorted into 16 tasks across 15 asset classes and 9 equity sectors. Pick the task, type the ticker and paste it into the firm's AI model. | Every prompt has a role, a method, named sections, a verdict and ground rules for its figures, checked in code; a command line tool and an MCP server. [Try it live](https://andrewjamesjohnson.github.io/agent-prompt-library/) |
 | **[World Data Sources](https://github.com/andrewjamesjohnson/world-data-sources)** | Where the official data lives for 205 countries and territories and every US state, in 50 sectors. One file per place, so an AI agent goes straight to the publisher instead of searching the web. | 237,399 source listings and 24,096 cited figures; a command line tool and an MCP server. [Try it live](https://andrewjamesjohnson.github.io/world-data-sources/) |
 | **[Congress Stock Scorecard](https://github.com/andrewjamesjohnson/congress-stock-scorecard)** | How members of Congress did with their stocks, every market morning, from public filings. | Streams a 15 GB market file through a small C reader each morning |
@@ -31,13 +31,13 @@ Every project starts the way a finance process does: what comes in, what gets de
 
 ## Mac Studio Prepared
 
-Most AI work today runs through someone else's servers, one chat at a time. This desk works differently. Each of its 120 seats has a charter that says what it owns, what done looks like and where it has to stop, so any task goes to the seat built for it. Everything runs on open weight models on four Studios the fund owns, and as those models get better, the same machines do more. [Every seat](https://github.com/andrewjamesjohnson/mac-studio-prepared/blob/main/docs/AGENTS.md) · [every report](https://github.com/andrewjamesjohnson/mac-studio-prepared/blob/main/docs/REPORTS.md) · [the formulas](https://github.com/andrewjamesjohnson/mac-studio-prepared/blob/main/docs/FORMULAS.md)
+Most AI work today runs through someone else's servers, one chat at a time. On this desk, each of the 120 seats has a charter that says what it owns, what done looks like and where it has to stop, so any task goes to the seat built for it. Everything is built to run on open weight models on four Studios the fund owns, and as those models get better, the same machines do more. [Every seat](https://github.com/andrewjamesjohnson/mac-studio-prepared/blob/main/docs/AGENTS.md) · [every report](https://github.com/andrewjamesjohnson/mac-studio-prepared/blob/main/docs/REPORTS.md) · [the formulas](https://github.com/andrewjamesjohnson/mac-studio-prepared/blob/main/docs/FORMULAS.md)
 
 <a href="https://github.com/andrewjamesjohnson/mac-studio-prepared"><img src="https://raw.githubusercontent.com/andrewjamesjohnson/mac-studio-prepared/main/docs/company.svg" alt="How work moves through the desk: 120 seats in the groups the desk's app uses" width="880"></a>
 
-<a href="https://github.com/andrewjamesjohnson/mac-studio-prepared#inside-the-app"><img src="https://raw.githubusercontent.com/andrewjamesjohnson/mac-studio-prepared/main/docs/app/bridge.jpg" alt="Mac Studio Prepared, inside the app: every seat at its console on the bridge" width="880"></a>
+<a href="https://github.com/andrewjamesjohnson/mac-studio-prepared#inside-the-app"><img src="https://raw.githubusercontent.com/andrewjamesjohnson/mac-studio-prepared/main/docs/app/bridge.jpg" alt="Inside the desk's app: every figure is a seat at its console, each with its own harness, sandbox and written workflow" width="880"></a>
 
-<sub>Mac Studio Prepared, inside the desk's app: every seat at its console.</sub>
+Inside the desk's app, every figure is a seat at its console. 109 of them are AI agents and 11 are always on engines, and each one has its own harness, its own sandbox and its own written workflow.
 
 ## At Quasar Markets
 
