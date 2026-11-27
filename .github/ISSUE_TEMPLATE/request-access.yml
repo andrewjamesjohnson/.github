@@ -1,0 +1,46 @@
+name: Request access
+description: Ask to see the code for one or more projects.
+title: "Access request: "
+assignees:
+  - Andrew04333
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The project repositories are private. Tell me who you are and what you would like to see, and I will get back to you.
+
+        This request is public on GitHub, so leave out anything private.
+  - type: input
+    id: name
+    attributes:
+      label: Your name
+    validations:
+      required: true
+  - type: input
+    id: organization
+    attributes:
+      label: Company or school
+    validations:
+      required: true
+  - type: checkboxes
+    id: projects
+    attributes:
+      label: Projects
+      options:
+        - label: All projects
+        - label: Mac Studio Prepared
+        - label: The Clip Factory
+        - label: Loop Engineering
+        - label: Agent Prompt Library
+        - label: World Data Sources
+        - label: Congress Stock Scorecard
+        - label: Finance Models
+        - label: Project Echo
+        - label: The Library Agent
+        - label: The Job Bot
+  - type: textarea
+    id: note
+    attributes:
+      label: Anything else
+    validations:
+      required: false
